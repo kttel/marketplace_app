@@ -3,6 +3,7 @@ import Content from '../Content';
 import Footer from '../Footer';
 
 import { Wrapper } from './styles';
+import Form from '../Form';
 
 const goods = [
   { id: 1, name: "Paste plate", price: 6.99, categoryId: 1 },
