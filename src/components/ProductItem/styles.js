@@ -12,3 +12,10 @@ export const Item = styled.div`
     padding: 5px;
 `;
 Item.displayName = 'Item';
+
+export const Title = styled.div`
+    a {
+        color: black;
+        font-weight: bolder;
+    }
+`;

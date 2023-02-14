@@ -1,5 +1,6 @@
 import { Component } from 'react';
-import { Wrapper, Item } from './styles';
+import { Wrapper, Item, Title } from './styles';
+import { Link } from "react-router-dom";
 
 class ProductItem extends Component {
     handleCheckboxChange = (e) => {
@@ -21,7 +22,7 @@ class ProductItem extends Component {
             <Wrapper>
                 <Item>
                     <input type="checkbox" onChange={this.handleCheckboxChange}/>
-                    <div>{this.props.product.name}</div>
+                    <Title><Link to={`product/${this.props.product.id}`}>{this.props.product.name}</Link></Title>
                     <div>{this.props.product.price}$</div>
                 </Item>
             </Wrapper>

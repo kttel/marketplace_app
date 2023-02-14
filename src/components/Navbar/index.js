@@ -3,7 +3,7 @@ import LoginControl from '../LoginControl';
 
 const Navbar = () => {
     const navigation = [
-        { id: 1, text: "Main", url: "/main" },
+        { id: 1, text: "Main", url: "/" },
         { id: 2, text: "About", url: "/about" }
     ]
     let itemList = [];

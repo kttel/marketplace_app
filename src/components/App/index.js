@@ -3,7 +3,12 @@ import Content from '../Content';
 import Footer from '../Footer';
 
 import { Wrapper } from './styles';
-import Form from '../Form';
+
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+import Product from '../Product';
 
 const goods = [
   { id: 1, name: "Paste plate", price: 6.99, categoryId: 1 },
@@ -17,11 +22,22 @@ const goods = [
   { id: 9, name: "Micellar water", price: 9.99, categoryId: 3 },
 ]
 
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Content goods={goods}/>,
+  },
+  {
+    path: "product/:productId",
+    element: <Product products={goods}/>,
+  }
+])
+
 function App() {
   return (
     <Wrapper>
       <Header />
-      <Content goods={goods}/>
+      <RouterProvider router={router} />
       <Footer />
     </Wrapper>
   );
