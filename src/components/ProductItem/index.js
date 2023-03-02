@@ -1,33 +1,31 @@
-import { Component } from 'react';
 import { Wrapper, Item, Title } from './styles';
 import { Link } from "react-router-dom";
+import { useEffect } from 'react';
 
-class ProductItem extends Component {
-    handleCheckboxChange = (e) => {
+
+const ProductItem = (props) => {
+    const handleCheckboxChange = (e) => {
         const valueChange = e.target.checked ? 1 : -1;
-        this.props.handleAmountChange(valueChange);
+        props.handleAmountChange(valueChange);
     }
 
-    componentDidMount() {
-        this.props.addItem();
-        this.props.vanishAmount();
-    }
+    useEffect(() => {
+        props.addItem();
+        props.vanishAmount();
+        return () => {
+            props.removeItem();
+        }
+    }, []);
 
-    componentWillUnmount() {
-        this.props.removeItem();
-    }
-
-    render() {
-        return (
-            <Wrapper>
-                <Item>
-                    <input type="checkbox" onChange={this.handleCheckboxChange}/>
-                    <Title><Link to={`product/${this.props.product.id}`}>{this.props.product.name}</Link></Title>
-                    <div>{this.props.product.price}$</div>
-                </Item>
-            </Wrapper>
-        );
-    }
+    return (
+        <Wrapper>
+            <Item>
+                <input type="checkbox" onChange={e => handleCheckboxChange(e)}/>
+                <Title><Link to={`product/${props.product.id}`}>{props.product.name}</Link></Title>
+                <div>{props.product.price}$</div>
+            </Item>
+        </Wrapper>
+    );
 }
 
 export default ProductItem;

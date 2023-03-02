@@ -1,66 +1,64 @@
-import { Component } from "react";
+import { useEffect, useState, useContext } from "react";
 import ProductItem from "../ProductItem";
 import { Wrapper } from  './styles';
 
+import { goods_context } from "../../Contexts";
+
 let instancesCount = 0
-class ProductList extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            amount: 0
-        }
+
+
+const ProductList = (props) => {
+    const goods = useContext(goods_context);
+    let [categoryProducts, setCategoryProducts] = useState([]);
+
+    const [amount, setAmount] = useState(0);
+
+    const addItem = () => {
+        instancesCount += 1;
+        props.addItem (instancesCount);
     }
 
-    addItem = () => {
-        instancesCount += 1
-        this.props.addItem(instancesCount);
+    const removeItem = () => {
+        instancesCount -= 1;
+        props.addItem (instancesCount);
     }
 
-    removeItem = () => {
-        instancesCount -= 1
-        this.props.addItem(instancesCount);
-    }
-
-    handleAmountChange = (change) => {
+    const handleAmountChange = (change) => {
         if (change === 0) {
-            this.setState({
-                amount: 0
-            })
+            setAmount(0);
         } else {
-            this.setState({
-                amount: this.state.amount + change
-            })
+            setAmount(amount + change);
         }
     }
 
-    vanishAmount = () => {
-        this.setState({
-            amount: 0
-        })
+    const vanishAmount = () => {
+        setAmount(0);
     }
 
-    render() {
-        this.categoryProducts = this.props.category === 0
-            ? this.props.products
-            : this.props.products.filter(product => product.categoryId === this.props.category)
-        return (
-            <>
-            <div>You want to order {this.state.amount} items.</div>
+    useEffect(() => {
+        if (props.category === 0) {
+            setCategoryProducts(goods);
+        } else {
+            setCategoryProducts(goods.filter(product => product.categoryId === props.category));
+        }
+    }, [props.category, goods]);
+
+    return (
+        <>
+            <div>You want to order {amount} items.</div>
             <Wrapper>
-                {this.categoryProducts.map(product =>
+                {categoryProducts.map(product =>
                     <ProductItem
-                        removeItem={this.removeItem}
-                        addItem={this.addItem}
-                        handleAmountChange={this.handleAmountChange}
-                        vanishAmount={this.vanishAmount}
+                        removeItem={removeItem}
+                        addItem={addItem}
+                        handleAmountChange={handleAmountChange}
+                        vanishAmount={vanishAmount}
                         product={product}
                         key={product.id}/>
                 )}
             </Wrapper>
-            </>
-
-        )
-    }
+        </>
+    )
 }
 
-export default ProductList;
+ export default ProductList;

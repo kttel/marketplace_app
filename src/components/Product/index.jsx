@@ -3,22 +3,27 @@ import { useParams } from "react-router-dom";
 
 import FeedbackForm from "../FeedbackForm";
 import Price from "../Price";
+import { useContext } from "react";
+
+import { goods_context } from "../../Contexts";
 
 
-function сonvertfromUsdToUah(usd) {
+const сonvertfromUsdToUah = (usd) => {
     const course = 37.74;
     const result = usd * course;
     const rounded = Math.round(result * 100) / 100;
     return rounded.toString();
 }
 
-function Product(props) {
+const Product = (props) => {
     let { productId } = useParams();
+    const goods = useContext(goods_context);
 
-    let product = props.products.find(p => p.id == productId);
+    let product = goods.find(p => p.id === +productId);
 
     const usd = product.price;
     const uah = сonvertfromUsdToUah(usd);
+
     return(
         <Wrapper>
             <div>

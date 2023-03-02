@@ -1,46 +1,32 @@
 import ProductList from "../ProductList";
 import CategoryList from '../CategoryList';
-import {Component} from "react";
+import {useContext, useState} from "react";
 import { Wrapper } from "./styles";
 
-const categories = [
-    { id: 1, name: "Tableware" },
-    { id: 2, name: "Clothes" },
-    { id: 3, name: "Cosmetics" }
-]
+import { cat_context } from "../../Contexts";
 
-class Content extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            categoryAmount: 0,
-            currentCategory: 0
-        }
+
+const Content = (props) => {
+    const categories = useContext(cat_context);
+
+    const [categoryAmount, setCategoryAmount] = useState(0);
+    const [currentCategory, setCurrentCategory] = useState(0);
+
+    const addItem = (amount) => {
+        setCategoryAmount(amount);
     }
 
-    getCategory = (key) => {
-        this.setState({
-            currentCategory: key
-        });
+    const getCategory = (key) => {
+        setCurrentCategory(key);
     }
 
-    addItem = (amount) => {
-        this.setState({
-            categoryAmount: amount
-        })
-    }
-
-    render() {
-        return (
-            <Wrapper>
-                <CategoryList getCategory={this.getCategory} categories={categories}/>
-                <div>Goods amount: {this.state.categoryAmount}</div>
-                <ProductList addItem={this.addItem} products={this.props.goods} category={this.state.currentCategory}/>
-            </Wrapper>
-        );
-    }
-
+    return (
+        <Wrapper>
+            <CategoryList getCategory={getCategory} categories={categories}/>
+            <div>Goods amount: {categoryAmount}</div>
+            <ProductList addItem={addItem} products={props.goods} category={currentCategory}/>
+        </Wrapper>
+    );
 }
 
 export default Content;
-
