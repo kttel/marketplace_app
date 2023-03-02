@@ -1,4 +1,3 @@
-import { Component } from 'react';
 import { Input } from './styles';
 
 const currencyNames = {
@@ -6,26 +5,18 @@ const currencyNames = {
     usd: 'USD'
 };
 
-class Price extends Component {
-    constructor(props) {
-      super(props);
-    }
+const Price = (props) => {
+  const handleChange = (e) => {
+    props.onTemperatureChange(e.target.value);
+  }
 
-    handleChange = (e) => {
-      this.props.onTemperatureChange(e.target.value);
-    }
-
-    render() {
-      const amount = this.props.amount;
-      const currency = this.props.currency;
-      return (
-        <fieldset>
-          <legend>PRICE [{currencyNames[currency]}]:</legend>
-          <Input value={amount}
-                 onChange={this.handleChange} readOnly/>
-        </fieldset>
-      );
-    }
+  return (
+    <fieldset>
+      <legend>PRICE [{currencyNames[props.currency]}]:</legend>
+      <Input value={props.amount}
+             onChange={e => handleChange(e)} readOnly/>
+    </fieldset>
+  );
 }
 
 export default Price;
