@@ -1,11 +1,9 @@
 import { useEffect, useState, useContext } from "react";
 import ProductItem from "../ProductItem";
 import { Wrapper } from  './styles';
-
 import { goods_context } from "../../Contexts";
 
 let instancesCount = 0
-
 
 const ProductList = (props) => {
     const goods = useContext(goods_context);

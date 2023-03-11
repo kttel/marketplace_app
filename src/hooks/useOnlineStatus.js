@@ -1,9 +1,4 @@
-import { useEffect, useState, useCallback } from "react"
-
-export const useToggle = (initial) => {
-    const [open, setOpen] = useState(initial);
-    return [open, useCallback(() => setOpen(status => !status))];
-};
+import { useEffect, useState } from "react"
 
 export default function useOnlineStatus () {
   const [online, setOnline] = useState(navigator.onLine)
@@ -24,9 +19,3 @@ export default function useOnlineStatus () {
 
   return { online, setOnline }
 }
-
-export const useDocumentTitle = (title) => {
-    useEffect(() => {
-      document.title = title;
-    }, [title]);
-  };

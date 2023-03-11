@@ -1,8 +1,9 @@
 import Navbar from "../Navbar";
 import Title from "../Title"
 import { Wrapper, Button } from './styles'
-import useOnlineStatus, { useDocumentTitle } from "../../hooks";
-import { useToggle } from "../../hooks";
+import useDocumentTitle from '../../hooks/useDocumentTitle';
+import useToggle from '../../hooks/useDocumentTitle';
+import useOnlineStatus from '../../hooks/useOnlineStatus';
 
 function Header() {
     const [open, toggle] = useToggle(false);
