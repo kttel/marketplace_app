@@ -6,7 +6,7 @@ import { Wrapper } from './styles';
 
 import {
   createBrowserRouter,
-  RouterProvider,
+  RouterProvider
 } from "react-router-dom";
 import Product from '../Product';
 
@@ -14,11 +14,15 @@ import Product from '../Product';
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Content/>,
+    element: <Content />,
   },
   {
     path: "product/:productId",
-    element: <Product/>,
+    element: <Product />,
+  },
+  {
+    path: "categories/:categoryId",
+    element: <Content />
   }
 ])
 

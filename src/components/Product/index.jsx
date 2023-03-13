@@ -5,7 +5,7 @@ import FeedbackForm from "../FeedbackForm";
 import Price from "../Price";
 import { useContext } from "react";
 
-import { goods_context } from "../../Contexts";
+import { goodsContext } from "../../contexts/GoodsContext";
 
 
 const сonvertfromUsdToUah = (usd) => {
@@ -17,7 +17,7 @@ const сonvertfromUsdToUah = (usd) => {
 
 const Product = (props) => {
     let { productId } = useParams();
-    const goods = useContext(goods_context);
+    const goods = useContext(goodsContext);
 
     let product = goods.find(p => p.id === +productId);
 

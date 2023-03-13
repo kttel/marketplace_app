@@ -1,16 +1,29 @@
 import ProductList from "../ProductList";
 import CategoryList from '../CategoryList';
-import {useContext, useState} from "react";
+import { useContext, useEffect, useState } from "react";
 import { Wrapper } from "./styles";
-
-import { cat_context } from "../../Contexts";
+import { useLocation, useParams } from "react-router-dom";
+import { categoriesContext } from "../../contexts/CategoriesContext";
+import Debug from "../Debug";
 
 
 const Content = (props) => {
-    const categories = useContext(cat_context);
-
+    const { categoryId } = useParams();
+    const categories = useContext(categoriesContext);
     const [categoryAmount, setCategoryAmount] = useState(0);
     const [currentCategory, setCurrentCategory] = useState(0);
+    const location = useLocation();
+
+    let [history, setHistory] = useState([]);
+
+    useEffect(() => {
+      setHistory([...history, location.pathname]);
+    }, [location]);
+
+    useEffect(() => {
+        if (categoryId != null && categories.filter(e => e.id == categoryId).length > 0)
+            setCurrentCategory(+categoryId);
+    }, []);
 
     const addItem = (amount) => {
         setCategoryAmount(amount);
@@ -22,9 +35,10 @@ const Content = (props) => {
 
     return (
         <Wrapper>
-            <CategoryList getCategory={getCategory} categories={categories}/>
+            <Debug history={history}/>
+            <CategoryList getCategory={getCategory}/>
             <div>Goods amount: {categoryAmount}</div>
-            <ProductList addItem={addItem} products={props.goods} category={currentCategory}/>
+            <ProductList addItem={addItem} category={currentCategory}/>
         </Wrapper>
     );
 }

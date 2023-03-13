@@ -1,6 +1,6 @@
 import { createContext } from 'react';
 
-const goods_list = [
+const goodsList = [
     { id: 1, name: "Paste plate", price: 6.99, categoryId: 1 },
     { id: 2, name: "Saucer", price: 4.99, categoryId: 1 },
     { id: 3, name: "Tea spoon", price: 1.99, categoryId: 1 },
@@ -12,11 +12,4 @@ const goods_list = [
     { id: 9, name: "Micellar water", price: 9.99, categoryId: 3 },
 ]
 
-const categories_list = [
-    { id: 1, name: "Tableware" },
-    { id: 2, name: "Clothes" },
-    { id: 3, name: "Cosmetics" }
-]
-
-export const cat_context = createContext(categories_list);
-export const goods_context = createContext(goods_list);
+export const goodsContext = createContext(goodsList);
