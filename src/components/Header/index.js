@@ -2,7 +2,7 @@ import Navbar from "../Navbar";
 import Title from "../Title"
 import { Wrapper, Button } from './styles'
 import useDocumentTitle from '../../hooks/useDocumentTitle';
-import useToggle from '../../hooks/useDocumentTitle';
+import useToggle from '../../hooks/useToggle';
 import useOnlineStatus from '../../hooks/useOnlineStatus';
 
 function Header() {
