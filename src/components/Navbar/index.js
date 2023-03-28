@@ -1,4 +1,6 @@
 import { Wrapper, A } from './styles';
+import styles from './styles.module.css'
+
 import LoginControl from '../LoginControl';
 
 const Navbar = () => {
@@ -8,15 +10,15 @@ const Navbar = () => {
     ]
     let itemList = [];
     navigation.forEach((object, index)=>{
-        itemList.push( <div key={object.id}><A href={object.url}>{object.text}</A></div>)
+        itemList.push( <div key={object.id}><a className={styles.a} href={object.url}>{object.text}</a></div>)
     })
     return (
-        <Wrapper>
+        <div className={styles.wrapper}>
             { itemList }
             <div>
                 <LoginControl/>
             </div>
-        </Wrapper>
+        </div>
     );
 }
 

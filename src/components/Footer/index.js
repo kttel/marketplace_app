@@ -1,10 +1,11 @@
 import { Wrapper } from './styles'
+import styles from './styles.module.css'
 
 function Footer() {
     return (
-        <Wrapper>
+        <div className={styles.wrapper}>
             Footer
-        </Wrapper>
+        </div>
     );
 }
 

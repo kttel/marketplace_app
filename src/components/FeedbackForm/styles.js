@@ -18,3 +18,7 @@ export const Textarea = styled.textarea`
     padding: 8px;
     border-radius: 5px;
 `;
+
+export const SpecialTextArea = styled(Textarea)`
+    background-color: #A9A9A9;
+`;

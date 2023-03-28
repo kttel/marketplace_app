@@ -1,11 +1,15 @@
 import ProductList from "../ProductList";
 import CategoryList from '../CategoryList';
 import { useContext, useEffect, useState } from "react";
-import { Wrapper } from "./styles";
 import { useLocation, useParams } from "react-router-dom";
 import { categoriesContext } from "../../contexts/CategoriesContext";
 import Debug from "../Debug";
 
+import { CSSTransition } from "react-transition-group";
+
+import { Wrapper } from "./styles";
+import styles from './styles.module.css'
+import './styles.css';
 
 const Content = (props) => {
     const { categoryId } = useParams();
@@ -33,13 +37,35 @@ const Content = (props) => {
         setCurrentCategory(key);
     }
 
+    const [showDialog, setShowDialog] = useState(false);
+
+    const toggleDialog = () => {
+        setShowDialog(!showDialog);
+    };
+
     return (
-        <Wrapper>
+        <div className={styles.wrapper}>
+            <button className={styles.toggleButton} onClick={toggleDialog}>Toggle Dialog</button>
+            <CSSTransition
+                in={showDialog}
+                timeout={800}
+                classNames="dialog"
+                unmountOnExit
+            >
+                <div className={styles.dialogEnter}>
+                <div >
+                <h1>Dialog</h1>
+                <p>This is a dialog box.</p>
+                <button onClick={toggleDialog}>Close Dialog</button>
+                </div>
+                </div>
+            </CSSTransition>
+
             <Debug history={history}/>
             <CategoryList getCategory={getCategory}/>
             <div>Goods amount: {categoryAmount}</div>
             <ProductList addItem={addItem} category={currentCategory}/>
-        </Wrapper>
+        </div>
     );
 }
 

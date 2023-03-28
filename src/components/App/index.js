@@ -3,6 +3,7 @@ import Content from '../Content';
 import Footer from '../Footer';
 
 import { Wrapper } from './styles';
+import styles from './styles.module.css'
 
 import {
   createBrowserRouter,
@@ -29,11 +30,11 @@ const router = createBrowserRouter([
 function App() {
 
   return (
-    <Wrapper>
+    <div className={styles.wrapper}>
       <Header />
       <RouterProvider router={router} />
       <Footer />
-    </Wrapper>
+    </div>
   );
 }
 

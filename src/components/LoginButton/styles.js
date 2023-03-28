@@ -5,3 +5,7 @@ export const A = styled.a`
     padding: 5px 15px;
 `
 A.displayName = 'LoginA';
+
+export const SpecialA = styled(A)`
+    color: #800000;
+`

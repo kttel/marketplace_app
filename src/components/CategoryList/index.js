@@ -1,8 +1,9 @@
-import { Wrapper, CategoryItem } from './styles';
 import { useContext } from "react";
 import { categoriesContext } from "../../contexts/CategoriesContext";
 import { useNavigate } from 'react-router-dom';
 
+import { Wrapper, CategoryItem } from './styles';
+import styles from './styles.module.css'
 
 const CategoryList = (props) => {
     const navigate = useNavigate();
@@ -17,8 +18,8 @@ const CategoryList = (props) => {
     }
 
     return(
-        <Wrapper>
-            <CategoryItem onClick={(e) => handleCategoryClick(0)}>All</CategoryItem>
+        <div className={styles.wrapper}>
+            <CategoryItem notSpecified onClick={(e) => handleCategoryClick(0)}>All</CategoryItem>
             {
                 categories.map(category => (
                     <CategoryItem
@@ -28,7 +29,7 @@ const CategoryList = (props) => {
                     </CategoryItem>
                 ))
             }
-        </Wrapper>
+        </div>
     )
 }
 

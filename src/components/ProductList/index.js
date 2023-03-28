@@ -1,9 +1,12 @@
 import { useEffect, useState, useContext } from "react";
 import ProductItem from "../ProductItem";
+
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { Wrapper } from  './styles';
+import styles from './styles.module.css'
+import './styles'
 
 import { goodsContext } from "../../contexts/GoodsContext";
-
 let instancesCount = 0
 
 const ProductList = (props) => {
@@ -11,6 +14,12 @@ const ProductList = (props) => {
     let [categoryProducts, setCategoryProducts] = useState([]);
 
     const [amount, setAmount] = useState(0);
+    const [divs, setDivs] = useState([]);
+
+    const handleAddDiv = () => {
+        const newDiv = <div key={divs.length} className={styles.newDiv}>New Item</div>;
+        setDivs([...divs, newDiv]);
+    };
 
     const addItem = () => {
         instancesCount += 1;
@@ -44,8 +53,18 @@ const ProductList = (props) => {
 
     return (
         <>
+            <button onClick={handleAddDiv}>Add item</button>
+            <div className={styles.container}>
+                <TransitionGroup>
+                {divs.map((div) => (
+                    <CSSTransition key={div.key} timeout={300} classNames="fade">
+                    {div}
+                    </CSSTransition>
+                ))}
+                </TransitionGroup>
+            </div>
             <div>You want to order {amount} items.</div>
-            <Wrapper>
+            <div className={styles.wrapper}>
                 {categoryProducts.map(product =>
                     <ProductItem
                         removeItem={removeItem}
@@ -55,7 +74,7 @@ const ProductList = (props) => {
                         product={product}
                         key={product.id}/>
                 )}
-            </Wrapper>
+            </div>
         </>
     )
 }

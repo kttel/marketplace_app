@@ -1,9 +1,11 @@
 import Navbar from "../Navbar";
 import Title from "../Title"
-import { Wrapper, Button } from './styles'
 import useDocumentTitle from '../../hooks/useDocumentTitle';
 import useToggle from '../../hooks/useToggle';
 import useOnlineStatus from '../../hooks/useOnlineStatus';
+
+import { Wrapper, Button } from './styles'
+import styles from './styles.module.css'
 
 function Header() {
     const [open, toggle] = useToggle(false);
@@ -11,13 +13,13 @@ function Header() {
     useDocumentTitle(`You're ${online ? "online" : "offline"}`)
 
     return (
-        <Wrapper>
+        <div className={styles.wrapper}>
             <Title />
             <Navbar />
             {open && <div>
                 You're {online ? "ONLINE" : "OFFLINE"}!
-            </div>} <Button onClick={e => toggle(!open)}>{open ? "Hide" : "Show"} status</Button>
-        </Wrapper>
+            </div>} <button className={styles.button} onClick={e => toggle(!open)}>{open ? "Hide" : "Show"} status</button>
+        </div>
     );
 }
 

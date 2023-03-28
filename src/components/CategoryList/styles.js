@@ -11,8 +11,8 @@ export const Wrapper = styled.div`
 Wrapper.displayName = 'CategoryListWrapper';
 
 export const CategoryItem = styled.div`
-    background-color: #565656;
-    color: white;
+    background-color: ${props => props.notSpecified ? "#c1c1c1" : "#3e3e3e"};
+    color: ${props => props.notSpecified ? "black" : "white"};
     border-radius: 10px;
     padding: 5px 6px;
     cursor: pointer;

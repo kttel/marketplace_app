@@ -1,4 +1,6 @@
 import { Wrapper, Title } from "./styles";
+import styles from './styles.module.css'
+
 import { useParams } from "react-router-dom";
 
 import FeedbackForm from "../FeedbackForm";
@@ -25,9 +27,9 @@ const Product = (props) => {
     const uah = сonvertfromUsdToUah(usd);
 
     return(
-        <Wrapper>
+        <div className={styles.wrapper}>
             <div>
-                <Title>{product.name}</Title>
+                <div className={styles.title}>{product.name}</div>
                 <div>Example description</div>
             </div>
             <div>
@@ -35,7 +37,7 @@ const Product = (props) => {
                 <Price currency="usd" amount={usd}/>
             </div>
             <div><FeedbackForm/></div>
-        </Wrapper>
+        </div>
     )
 }
 

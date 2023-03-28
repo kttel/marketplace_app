@@ -1,4 +1,6 @@
-import { Wrapper, Item, Title } from './styles';
+import { Wrapper, Item, Title, SpecialTitle } from './styles';
+import styles from './styles.module.css'
+
 import { Link } from "react-router-dom";
 import { useEffect } from 'react';
 
@@ -17,13 +19,24 @@ const ProductItem = (props) => {
         }
     }, []);
 
+    const price = props.product.price;
+
+    let fieldProps = { };
+    if (price > 10) {
+        fieldProps = {
+            primary: true
+        };
+    }
     return (
-        <Wrapper>
-            <Item>
+        <Wrapper { ...fieldProps}>
+            <div className={styles.item}>
                 <input type="checkbox" onChange={e => handleCheckboxChange(e)}/>
-                <Title><Link to={`product/${props.product.id}`}>{props.product.name}</Link></Title>
+                {props.product.name.charAt(0) === 'F' || props.product.name.charAt(0) === 'P' ?
+                (<Title><Link to={`product/${props.product.id}`}>{props.product.name}</Link></Title>) :
+                (<SpecialTitle><Link to={`product/${props.product.id}`}>{props.product.name}</Link></SpecialTitle>)}
+
                 <div>{props.product.price}$</div>
-            </Item>
+            </div>
         </Wrapper>
     );
 }

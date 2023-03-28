@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import { Form, Button, Textarea } from './styles';
+
+import { Form, Button, SpecialTextArea, Textarea } from './styles';
+import styles from './styles.module.css'
 
 const FeedbackForm = (props) => {
   const [value, setValue] = useState('');
@@ -14,14 +16,19 @@ const FeedbackForm = (props) => {
     setValue("");
   }
   return (
-            <Form onSubmit={e => handleSubmit(e)}>
+          <>
+            <form className={styles.form} onSubmit={e => handleSubmit(e)}>
               <Textarea
                 value={value}
                 onChange={e => handleChange(e)}
                 placeholder="Enter your feedback!"
                 required/>
-              <Button type="submit" value="Send" />
-            </Form>
+                <SpecialTextArea
+                  placeholder="Inheritence test"/>
+              <button className={styles.button} type="submit">Send</button>
+            </form>
+          </>
+
   );
 }
 

@@ -1,11 +1,11 @@
 import { Wrapper } from "./styles";
+import styles from './styles.module.css'
 
 const Debug = ({history}) => {
-    console.log(history)
     return (
-        <Wrapper>
+        <div className={styles.wrapper}>
             {history.map(el => (<span key={el}><b>path:</b> {el} → </span>))}
-        </Wrapper>
+        </div>
     );
 };
 
