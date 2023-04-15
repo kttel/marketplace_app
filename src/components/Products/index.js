@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from 'react';
-import { Table, Button, Modal, Form, Input, Upload, message, Popconfirm } from 'antd';
+import { Table, Button, Modal, Form, Input, Upload, message, Popconfirm, List, Card } from 'antd';
 import { PlusOutlined, UploadOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
 
 const Products = () => {
@@ -45,7 +45,6 @@ const Products = () => {
 
   const [visible, setVisible] = useState(false);
   const [form] = Form.useForm();
-  const [newProduct, setNewProduct] = useState({});
   const [products, setProducts] = useState([
     {
       name: 'Example product',
@@ -127,12 +126,49 @@ const Products = () => {
     return isJpgOrPng && isLt2M;
   })
 
+  const [isListView, setIsListView] = useState(true);
+
+  const toggleView = () => {
+    setIsListView(!isListView);
+  };
+
+  const renderViewSwitcher = () => {
+    return (
+      <Button type="primary" onClick={toggleView}>
+        {isListView ? 'Table View' : 'List View'}
+      </Button>
+    );
+  };
+
+  const renderListView = () => {
+    return (
+      <List
+        grid={{ gutter: 16, column: 4 }}
+        dataSource={products}
+        renderItem={(item) => (
+          <List.Item>
+            <Card title={item.name} style={{ width: 200 }}>
+              <img src={item.image} alt={item.name} style={{ maxWidth: '100%' }} />
+              <p>{item.description}</p>
+              <p>{item.price}</p>
+            </Card>
+          </List.Item>
+        )}
+      />
+    );
+  };
+
+  const renderTableView = () => {
+    return <Table columns={columns} dataSource={products} />;
+  };
+
   return (
     <div>
       <Button type="primary" icon={<PlusOutlined />} onClick={handleAdd}>
         Add Product
       </Button>
-      <Table columns={columns} dataSource={products} />
+      {renderViewSwitcher()}
+      {isListView ? renderListView() : renderTableView()}
       <Modal
         visible={visible}
         title={editingIndex > -1 ? 'Edit Product' : 'Add New Product'}
@@ -180,8 +216,8 @@ const Products = () => {
             beforeUpload={handleBeforeUpload}
             fileList={fileList}
           >
-  <Button icon={<UploadOutlined />}>Click to Upload</Button>
-</Upload>
+            <Button icon={<UploadOutlined />}>Click to Upload</Button>
+          </Upload>
           </Form.Item>
         </Form>
       </Modal>

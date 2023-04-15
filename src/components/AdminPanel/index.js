@@ -5,8 +5,7 @@ import {
   UserOutlined,
   ShoppingCartOutlined,
   TeamOutlined,
-  ShopOutlined,
-  SettingOutlined,
+  ShopOutlined
 } from '@ant-design/icons';
 import { ConfigProvider } from 'antd';
 import { blue } from '@ant-design/colors';
