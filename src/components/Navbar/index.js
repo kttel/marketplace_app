@@ -6,7 +6,8 @@ import LoginControl from '../LoginControl';
 const Navbar = () => {
     const navigation = [
         { id: 1, text: "Main", url: "/" },
-        { id: 2, text: "About", url: "/about" }
+        { id: 2, text: "About", url: "/about" },
+        { id: 3, text: "Admin", url: "/admin" },
     ]
     let itemList = [];
     navigation.forEach((object, index)=>{

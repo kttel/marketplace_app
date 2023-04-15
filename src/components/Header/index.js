@@ -6,6 +6,7 @@ import useOnlineStatus from '../../hooks/useOnlineStatus';
 
 import { Wrapper, Button } from './styles'
 import styles from './styles.module.css'
+import LoginModal from "../LoginModal";
 
 function Header() {
     const [open, toggle] = useToggle(false);
@@ -18,7 +19,9 @@ function Header() {
             <Navbar />
             {open && <div>
                 You're {online ? "ONLINE" : "OFFLINE"}!
-            </div>} <button className={styles.button} onClick={e => toggle(!open)}>{open ? "Hide" : "Show"} status</button>
+            </div>} <button style={{ marginBottom: "10px" }} className={styles.button}
+                onClick={e => toggle(!open)}>{open ? "Hide" : "Show"} status</button>
+            <LoginModal  />
         </div>
     );
 }

@@ -10,6 +10,7 @@ import {
   RouterProvider
 } from "react-router-dom";
 import Product from '../Product';
+import AdminPanel from '../AdminPanel';
 
 
 const router = createBrowserRouter([
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
   {
     path: "categories/:categoryId",
     element: <Content />
+  },
+  {
+    path: "admin/",
+    element: <AdminPanel />
   }
 ])
 
