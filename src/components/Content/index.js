@@ -8,6 +8,8 @@ import Debug from "../Debug";
 import { CSSTransition } from "react-transition-group";
 
 import { Wrapper } from "./styles";
+
+import store from '../../store.js';
 import styles from './styles.module.css'
 import './styles.css';
 
@@ -27,6 +29,17 @@ const Content = (props) => {
     useEffect(() => {
         if (categoryId != null && categories.filter(e => e.id == categoryId).length > 0)
             setCurrentCategory(+categoryId);
+
+        console.log(store.getState());
+
+        store.dispatch({ type: 'INCREMENT' });
+        console.log(store.getState());
+
+        store.dispatch({ type: 'INCREMENT' });
+        console.log(store.getState());
+
+        store.dispatch({ type: 'DECREMENT' });
+        console.log(store.getState());
     }, []);
 
     const addItem = (amount) => {

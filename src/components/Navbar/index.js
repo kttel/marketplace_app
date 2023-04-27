@@ -8,6 +8,11 @@ const Navbar = () => {
         { id: 1, text: "Main", url: "/" },
         { id: 2, text: "About", url: "/about" },
         { id: 3, text: "Admin", url: "/admin" },
+        { id: 4, text: "LoginForm", url: "/login" },
+        { id: 5, text: "Register", url: "/register" },
+        { id: 6, text: "Numbers", url: "/numbers" },
+        { id: 7, text: "Test", url: "/test" },
+        { id: 8, text: "Redux", url: "/redux" },
     ]
     let itemList = [];
     navigation.forEach((object, index)=>{
